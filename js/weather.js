@@ -1,4 +1,6 @@
 const API_KEY = "1f4d19daa12a25f9790b09da51e7b196";
+const CurrentWeather = document.querySelector("#weather");
+const CurrentLocation = document.querySelector("#location");
 
 function geoOk(position) {
   const lati = position.coords.latitude;
@@ -8,10 +10,8 @@ function geoOk(position) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const CurrentWeather = document.querySelector("#weather");
-      const CurrentLocation = document.querySelector("#location");
       CurrentLocation.innerText = data.name;
-      CurrentWeather.innerText = data.weather[0].main;
+      CurrentWeather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
     });
 }
 
